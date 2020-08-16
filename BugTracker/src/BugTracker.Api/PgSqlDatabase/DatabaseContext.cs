@@ -31,10 +31,7 @@ namespace BugTracker.Api.PgSqlDatabase
     [Table("bug")]
     public class Bug
     {
-        [Key]
-        public Guid Id { get; set; }
-
-        public string Slug { get; set; }
+        [Key] public int Id { get; set; }
 
         public Instant Created { get; set; }
 

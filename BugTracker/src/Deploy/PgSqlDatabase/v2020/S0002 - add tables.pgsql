@@ -8,9 +8,7 @@ START TRANSACTION;
 
   CREATE TABLE bug
   (
-    id uuid PRIMARY KEY NOT NULL,
-    slug text NOT NULL,
-
+    id int PRIMARY KEY NOT NULL GENERATED ALWAYS AS IDENTITY,
     created timestamptz NOT NULL,
 
     title text NOT NULL,
