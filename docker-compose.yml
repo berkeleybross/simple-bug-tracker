@@ -12,7 +12,7 @@ services:
   api:
     build: ./BugTracker
     environment:
-      - ConnectionStrings__PgSql=Server=postgres; Port=5432; Database=dev; Username=developer_blue; Password=postgres123;
+      - ConnectionStrings__PgSql=Server=postgres; Port=5432; Database=dev; Username=postgres; Password=postgres123;
   website:
     build: ./Client
     restart: unless-stopped
