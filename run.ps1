@@ -26,3 +26,11 @@ try {
 finally {
     Pop-Location
 }
+
+Push-Location $PSScriptRoot/Bugtracker/src/Deploy
+Try {
+    Exec { dotnet run -- "Server=localhost; Port=5432; Database=dev; Username=postgres; Password=postgres123;" --drop }
+}
+Finally {
+    Pop-Location
+}

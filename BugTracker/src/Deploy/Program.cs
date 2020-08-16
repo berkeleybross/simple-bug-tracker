@@ -1,4 +1,6 @@
-﻿using System;
+﻿
+using System.Linq;
+using Milvus.Api.Deploy.PgSqlDatabase;
 
 namespace Deploy
 {
@@ -6,7 +8,12 @@ namespace Deploy
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            if (args.Contains("--drop"))
+            {
+                PgDatabaseUpgrader.DropDatabase(args[0]);
+            }
+
+            PgDatabaseUpgrader.CreateAndUpgradeDatabase(args[0]);
         }
     }
 }
