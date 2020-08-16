@@ -2,6 +2,12 @@
   <v-row align="center">
     <v-form ref="form" v-model="valid">
       <v-text-field
+        v-model="created"
+        label="Created"
+        disabled=""
+      ></v-text-field>
+
+      <v-text-field
         v-model="title"
         :counter="100"
         :rules="titleRules"
@@ -48,6 +54,7 @@ export default {
     return {
       valid: true,
       slug: bug.slug,
+      created: bug.created,
       title: bug.title,
       titleRules: [
         (v) => !!v || 'Title is required',
