@@ -14,18 +14,10 @@ function exec {
     }
 }
 
-Function Invoke-DockerCompose {
-    $extraArgs = $args
-    Exec { docker-compose @extraArgs }
+Push-Location $PSScriptRoot/Bugtracker/src/Deploy
+Try {
+    Exec { dotnet run -- "Server=localhost; Port=5432; Database=dev; Username=postgres; Password=postgres123;" --drop }
 }
-
-try {
-    Push-Location $PSScriptRoot
-    Invoke-DockerCompose build
-    Invoke-DockerCompose up -d
-}
-finally {
+Finally {
     Pop-Location
 }
-
-& ./seed.ps1
