@@ -22,7 +22,7 @@ namespace BugTracker.Api.Controllers
         [HttpGet]
         public List<UserDto> GetAll()
         {
-            return this.databaseContext.SiteUser.AsEnumerable()
+            return this.databaseContext.SiteUser.OrderBy(u => u.Name).AsEnumerable()
                 .Select(u => new UserDto
                 {
                     Id = u.Id,
@@ -42,7 +42,7 @@ namespace BugTracker.Api.Controllers
             });
             this.databaseContext.SaveChanges();
 
-            return this.CreatedAtAction("Get", new {id = id}, null);
+            return this.CreatedAtAction("Get", new {id = id}, new {id = id});
         }
 
         [HttpGet("{id}")]
