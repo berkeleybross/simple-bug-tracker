@@ -1,6 +1,7 @@
 <template>
   <div>
     Users
+    <v-btn :to="{ name: 'users-new' }">Add</v-btn>
     <v-card
       v-for="user in users"
       :key="user.id"

@@ -1,10 +1,11 @@
 <template>
   <div>
     Open bugs
+    <v-btn :to="{ name: 'bugs-new' }">New</v-btn>
     <v-card
       v-for="bug in bugs"
       :key="bug.id"
-      :to="{ name: 'bugs-slug', params: { slug: bug.slug } }"
+      :to="{ name: 'bugs-view-slug', params: { slug: bug.slug } }"
     >
       <v-card-title class="headline">{{ bug.title }}</v-card-title>
     </v-card>
@@ -14,13 +15,8 @@
 <script>
 export default {
   components: {},
-  asyncData() {
-    return {
-      bugs: [
-        { slug: 1, title: 'foo' },
-        { slug: 2, title: 'bar' },
-      ],
-    }
+  async asyncData({ app }) {
+    return { bugs: await app.$http.$get('api/bugs') }
   },
 }
 </script>

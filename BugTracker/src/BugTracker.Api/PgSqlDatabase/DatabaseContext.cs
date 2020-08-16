@@ -35,10 +35,18 @@ namespace BugTracker.Api.PgSqlDatabase
 
         public Instant Created { get; set; }
 
+        public BugStatus Status { get; set; }
+
         public string Title { get; set; }
 
         public string Description { get; set; }
 
-        public SiteUser ActiveUser { get; set; }
+        public virtual SiteUser ActiveUser { get; set; }
+    }
+
+    public enum BugStatus
+    {
+        New,
+        Closed
     }
 }

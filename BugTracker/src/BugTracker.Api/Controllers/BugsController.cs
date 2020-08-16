@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using BugTracker.Api.PgSqlDatabase;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using NodaTime;
 
 namespace BugTracker.Api.Controllers
@@ -24,7 +25,9 @@ namespace BugTracker.Api.Controllers
         [HttpGet]
         public List<BugDto> Get()
         {
-            return this.databaseContext.Bug.AsEnumerable()
+            return this.databaseContext.Bug.Include(b => b.ActiveUser)
+                .Where(b => b.Status != BugStatus.Closed)
+                .AsEnumerable()
                 .Select(b => new BugDto
                 {
                     ActiveUserId = b.ActiveUser?.Id,
@@ -48,7 +51,8 @@ namespace BugTracker.Api.Controllers
                 Created = this.clock.GetCurrentInstant(),
                 Title = form.Title,
                 Description = form.Description,
-                ActiveUser = activeUser
+                ActiveUser = activeUser,
+                Status = BugStatus.New,
             };
             this.databaseContext.Bug.Add(bug);
             this.databaseContext.SaveChanges();

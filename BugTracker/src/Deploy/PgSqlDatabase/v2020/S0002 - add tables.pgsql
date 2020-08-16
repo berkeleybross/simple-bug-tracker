@@ -13,6 +13,7 @@ START TRANSACTION;
 
     title text NOT NULL,
     description text NULL,
+    status int NOT NULL,
 
     active_user_id uuid NULL REFERENCES site_user
   );
