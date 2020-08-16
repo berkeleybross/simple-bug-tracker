@@ -20,6 +20,8 @@
       <v-select
         v-model="activeUser"
         :items="users"
+        item-value="id"
+        item-text="name"
         label="Active user"
         required
       ></v-select>
