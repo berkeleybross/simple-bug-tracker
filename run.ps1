@@ -21,6 +21,7 @@ Function Invoke-DockerCompose {
 
 try {
     Push-Location $PSScriptRoot
+    Invoke-DockerCompose build
     Invoke-DockerCompose up -d
 }
 finally {

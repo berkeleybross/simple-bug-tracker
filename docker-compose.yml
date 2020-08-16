@@ -1,16 +1,5 @@
-version: '3.7'
+version: "3.7"
 services:
-  api:
-    build: ./BugTracker
-    environment:
-      - ConnectionStrings__PgSql=Server=postgres; Port=5432; Database=dev; Username=developer_blue; Password=postgres123;
-  website:
-    build: ./Client
-    restart: unless-stopped
-    environment:
-      PROXY_TO: http://api:5000/
-    ports:
-      - 3000:3000
   postgres:
     image: postgres:11.6-alpine
     restart: unless-stopped
@@ -20,5 +9,17 @@ services:
       - pgdata:/var/lib/postgresql/data
     ports:
       - 5432:5432
+  api:
+    build: ./BugTracker
+    environment:
+      - ConnectionStrings__PgSql=Server=postgres; Port=5432; Database=dev; Username=developer_blue; Password=postgres123;
+  website:
+    build: ./Client
+    restart: unless-stopped
+    environment:
+      PROXY_TO: http://api:5000/
+      HOST: 0.0.0.0
+    ports:
+      - 3001:3000
 volumes:
   pgdata:

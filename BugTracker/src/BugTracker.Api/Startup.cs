@@ -36,7 +36,7 @@ namespace BugTracker.Api
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
+            // app.UseHttpsRedirection(); TODO
 
             app.UseRouting();
 
