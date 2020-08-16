@@ -1,0 +1,16 @@
+# Ignore everything, and then explictly include source code
+**
+!/.config
+!/src/
+!/.babelrc
+!/.editorconfig
+!/global.json
+!/jest.config.js
+!/BugTracker.sln
+!/package*.json
+!/stylecop.json
+
+# Wildcard ignore these directories. Has to be after reincluding the src folders.
+**/bin/
+**/obj/
+**/node_modules/

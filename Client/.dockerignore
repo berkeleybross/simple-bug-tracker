@@ -1,0 +1,24 @@
+# Ignore everything, and then explictly include source code
+**
+!/build/**/*.js
+!/client/
+!/cypress/
+!/server/
+!/shared/
+!/tests/
+!/.babelrc
+!/.editorconfig
+!/.eslintrc.js
+!/.gitignore
+!/.npmrc
+!/.prettierrc
+!/cypress.json
+!/jest.config.js
+!/jsconfig.json
+!/nuxt.config.js
+!/package*.json
+!/rollup.config.js
+!/stylelint.config.js
+
+# Wildcard ignore these directories. Has to be after reincluding the src folders.
+**/node_modules/
